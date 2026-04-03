@@ -6,7 +6,7 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 
 const ProtectedRoute = ({ children }) => {
-  const token = sessionStorage.getItem('token');
+  const token = localStorage.getItem('token');
   // For demo if you don't have db running, just let them in, but in a real app this blocks
   // Here we block if not logged in.
   if (!token) {

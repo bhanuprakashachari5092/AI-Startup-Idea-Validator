@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { User, Mail, Lock, ArrowRight, Loader2 } from 'lucide-react';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || "https://ai-startup-idea-validator-pzwh.onrender.com";
+
 const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -18,14 +20,14 @@ const Register = () => {
     setError('');
 
     try {
-      const res = await axios.post('https://ai-startup-idea-validator-pzwh.onrender.com/api/auth/register', { name, email, password });
+      const res = await axios.post(`${API_URL}/api/auth/register`, { name, email, password });
 
-      sessionStorage.setItem('token', res.data.token);
-      sessionStorage.setItem('user', JSON.stringify(res.data));
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('user', JSON.stringify(res.data));
       navigate('/dashboard');
     } catch (err) {
       if (err.message === 'Network Error') {
-         sessionStorage.setItem('token', 'dummy_token');
+         localStorage.setItem('token', 'dummy_token');
          navigate('/dashboard');
       } else {
          setError(err.response?.data?.error || 'Failed to register');

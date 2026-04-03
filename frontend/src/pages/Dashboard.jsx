@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
  */
 import mermaid from "mermaid";
 
+const API_URL = import.meta.env.VITE_API_URL || "https://ai-startup-idea-validator-pzwh.onrender.com";
+
 // Initialize Mermaid for dark mode
 mermaid.initialize({
     startOnLoad: true,
@@ -83,9 +85,9 @@ const ChatMessage = ({ msg }) => {
         setIsTranslating(true);
         setShowLangMenu(false);
         try {
-            const token = sessionStorage.getItem("token");
+            const token = localStorage.getItem("token");
             const res = await axios.post(
-                "https://ai-startup-idea-validator-pzwh.onrender.com/api/chat/translate",
+                `${API_URL}/api/chat/translate`,
                 { text: msg.content, targetLanguage: target },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -191,8 +193,8 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchHistory = async () => {
             try {
-                const token = sessionStorage.getItem("token");
-                const res = await axios.get("https://ai-startup-idea-validator-pzwh.onrender.com/api/chat", {
+                const token = localStorage.getItem("token");
+                const res = await axios.get(`${API_URL}/api/chat`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setHistory(res.data || []);
@@ -220,8 +222,8 @@ const Dashboard = () => {
         setError("");
 
         try {
-            const token = sessionStorage.getItem("token");
-            const response = await fetch("https://ai-startup-idea-validator-pzwh.onrender.com/api/chat", {
+            const token = localStorage.getItem("token");
+            const response = await fetch(`${API_URL}/api/chat`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
                 body: JSON.stringify({ message: currentInput, history: history })
@@ -291,8 +293,8 @@ const Dashboard = () => {
                         onClick={async () => {
                             if (window.confirm("Are you sure you want to clear the neural history, mawa? 💥")) {
                                 try {
-                                    const token = sessionStorage.getItem("token");
-                                    await axios.delete("https://ai-startup-idea-validator-pzwh.onrender.com/api/chat/clear", {
+                                    const token = localStorage.getItem("token");
+                                    await axios.delete(`${API_URL}/api/chat/clear`, {
                                         headers: { Authorization: `Bearer ${token}` }
                                     });
                                     setHistory([]);

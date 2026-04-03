@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { Mail, Lock, ArrowRight, Loader2 } from 'lucide-react';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || "https://ai-startup-idea-validator-pzwh.onrender.com";
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,14 +19,14 @@ const Login = () => {
     setError('');
     
     try {
-      const res = await axios.post('https://ai-startup-idea-validator-pzwh.onrender.com/api/auth/login', { email, password });
-      sessionStorage.setItem('token', res.data.token);
-      sessionStorage.setItem('user', JSON.stringify(res.data));
+      const res = await axios.post(`${API_URL}/api/auth/login`, { email, password });
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('user', JSON.stringify(res.data));
       navigate('/dashboard');
     } catch (err) {
       // Mock login fallback if backend isn't properly connected yet but we still want to demo the UI.
       if (err.message === 'Network Error') {
-         sessionStorage.setItem('token', 'dummy_token');
+         localStorage.setItem('token', 'dummy_token');
          navigate('/dashboard');
       } else {
          setError(err.response?.data?.error || 'Failed to login');

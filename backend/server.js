@@ -16,8 +16,8 @@ const PORT = process.env.PORT || 5000;
 
 // Security & Middlewares
 app.use(cors({
-  origin: "*", // testing ki
-  credentials: true
+    origin: "*", // 🔥 for testing (later restrict)
+    credentials: true
 }));
 app.use(express.json());
 app.use(helmet()); 
