@@ -5,13 +5,13 @@ import { BrainCircuit, LogOut, LayoutDashboard } from 'lucide-react';
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const token = sessionStorage.getItem('token');
-  const userString = sessionStorage.getItem('user');
+  const token = localStorage.getItem('token');
+  const userString = localStorage.getItem('user');
   const user = userString ? JSON.parse(userString) : null;
 
   const handleLogout = () => {
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('user');
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     navigate('/login');
   };
 

@@ -26,7 +26,7 @@ const homeFeatures = [
 ];
 
 const Home = () => {
-  const token = sessionStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
   return (
     <div className="min-h-screen relative overflow-hidden pt-20">
