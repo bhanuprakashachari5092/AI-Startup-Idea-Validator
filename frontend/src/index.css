@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-white font-sans antialiased overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  }
+  
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-xl;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-orange-400;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white font-medium py-3 px-6 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(255,122,0,0.5)] hover:shadow-[0_0_25px_rgba(255,122,0,0.8)] hover:-translate-y-1 transform flex items-center justify-center;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border border-white/20 hover:border-white/40 hover:bg-white/5 text-white font-medium py-3 px-6 rounded-full transition-all duration-300;
+  }
+}
+
+/* Background effects */
+.bg-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,122,0,0.15) 0%, rgba(15,15,15,0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.top-glow {
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom-glow {
+  bottom: -200px;
+  right: -200px;
+}
