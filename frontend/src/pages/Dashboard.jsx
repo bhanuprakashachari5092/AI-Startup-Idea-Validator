@@ -85,7 +85,7 @@ const ChatMessage = ({ msg }) => {
         try {
             const token = sessionStorage.getItem("token");
             const res = await axios.post(
-                "http://localhost:5000/api/chat/translate",
+                "https://ai-startup-idea-validator-pzwh.onrender.com/api/chat/translate",
                 { text: msg.content, targetLanguage: target },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -192,7 +192,7 @@ const Dashboard = () => {
         const fetchHistory = async () => {
             try {
                 const token = sessionStorage.getItem("token");
-                const res = await axios.get("http://127.0.0.1:5000/api/chat", {
+                const res = await axios.get("https://ai-startup-idea-validator-pzwh.onrender.com/api/chat", {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setHistory(res.data || []);
@@ -221,7 +221,7 @@ const Dashboard = () => {
 
         try {
             const token = sessionStorage.getItem("token");
-            const response = await fetch("http://127.0.0.1:5000/api/chat", {
+            const response = await fetch("https://ai-startup-idea-validator-pzwh.onrender.com/api/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
                 body: JSON.stringify({ message: currentInput, history: history })
@@ -292,7 +292,7 @@ const Dashboard = () => {
                             if (window.confirm("Are you sure you want to clear the neural history, mawa? 💥")) {
                                 try {
                                     const token = sessionStorage.getItem("token");
-                                    await axios.delete("http://127.0.0.1:5000/api/chat/clear", {
+                                    await axios.delete("https://ai-startup-idea-validator-pzwh.onrender.com/api/chat/clear", {
                                         headers: { Authorization: `Bearer ${token}` }
                                     });
                                     setHistory([]);

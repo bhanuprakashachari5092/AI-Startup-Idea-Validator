@@ -17,7 +17,7 @@ const Login = () => {
     setError('');
     
     try {
-      const res = await axios.post('http://127.0.0.1:5000/api/auth/login', { email, password });
+      const res = await axios.post('https://ai-startup-idea-validator-pzwh.onrender.com/api/auth/login', { email, password });
       sessionStorage.setItem('token', res.data.token);
       sessionStorage.setItem('user', JSON.stringify(res.data));
       navigate('/dashboard');

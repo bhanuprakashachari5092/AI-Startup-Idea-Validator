@@ -18,7 +18,7 @@ const Register = () => {
     setError('');
 
     try {
-      const res = await axios.post('http://127.0.0.1:5000/api/auth/register', { name, email, password });
+      const res = await axios.post('https://ai-startup-idea-validator-pzwh.onrender.com/api/auth/register', { name, email, password });
 
       sessionStorage.setItem('token', res.data.token);
       sessionStorage.setItem('user', JSON.stringify(res.data));
