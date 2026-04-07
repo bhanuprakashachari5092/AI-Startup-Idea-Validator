@@ -5,8 +5,9 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-background text-white font-sans antialiased overflow-x-hidden;
+  html, body {
+    @apply bg-black text-white font-sans antialiased overflow-x-hidden;
+    background-color: black !important;
   }
 }
 
@@ -30,6 +31,58 @@
   .btn-secondary {
     @apply bg-transparent border border-white/20 hover:border-white/40 hover:bg-white/5 text-white font-medium py-3 px-6 rounded-full transition-all duration-300;
   }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Animations */
+@keyframes shimmer {
+  from { background-position: 0% central; }
+  to { background-position: 200% central; }
+}
+
+.animate-shimmer {
+  animation: shimmer 4s linear infinite;
+}
+
+.scanner-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff7a00, transparent);
+  animation: scan 3s ease-in-out infinite;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+@keyframes scan {
+  0% { top: 0; }
+  50% { top: 100%; }
+  100% { top: 0; }
+}
+
+/* Hide Mermaid global error/calculation elements mawa! 🧡🚦🥧 */
+#mermaid-backup, 
+.mermaid-tooltip, 
+.mermaidTooltip,
+[id^="mermaid-"] {
+    display: none;
+}
+
+/* Ensure only charts inside container are visible */
+.mermaid-container svg {
+    display: block !important;
+    max-width: 100% !important;
+    height: auto !important;
 }
 
 /* Background effects */
